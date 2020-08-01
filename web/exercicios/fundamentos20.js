@@ -16,10 +16,7 @@ function calcCedulas(valor) {
     while (calc < valor) {
 
         cedula = buscaCedula(calc, valor)
-        // console.log(cedula)
-        // console.log(calc)
-        // console.log(valor)
-        // console.log('esta no for ' + i)
+
         if (calc < valor) {
             switch (cedula) {
                 case 100:
@@ -50,26 +47,37 @@ function calcCedulas(valor) {
 
             }
             calc += cedula
-            // console.log(`calc = ${calc}, quant100 = ${quant100}, quant50 = ${quant50}, quant10 = ${quant10}, quant5 = ${quant5}, quant1 = ${quant1}`)
-
+            console.log('montante = ' + calc)
         }
-
-        if (valor == calc) {
-            resul = resultado(quant100, quant50, quant20, quant10, quant5, quant2, quant1, valor)
-            console.log(resul)
-        }
+    }
+    if (valor == calc) {
+        resul = resultado(quant100, quant50, quant20, quant10, quant5, quant2, quant1, valor)
+    } else {
+        resul = 'Não é possivel sacar o dinheiro'
     }
     return resul
 }
 
 const buscaCedula = (total, valor) => {
-    const cedulas = [100, 50, 20, 10, 5, 2, 1] //trabalhando com array  é possivel adicionar e remover notas o quanto quiser
+    const cedulas = [100, 50, 10, 5, 1] //trabalhando com array  é possivel adicionar e remover notas o quanto quiser
+    let teste
+    let diferenca = valor - total
+    let tamanhoArray = cedulas.length - 1
     for (let i = 0; i < cedulas.length; i++) {
-        if (total + cedulas[i] <= valor) {
-            console.log(cedulas[i])
+        teste = cedulas[i] + cedulas[i + 1]
+        if (total + cedulas[i] <= valor && total + teste <= valor) {
+            console.log('cedula usada = ' + cedulas[i])
             return cedulas[i]
         }
+        if (diferenca < 10) {
+            if (total + cedulas[tamanhoArray] <= valor) {
+                console.log('cedula usada = ' + cedulas[tamanhoArray])
+                return cedulas[tamanhoArray]
+            }
+        }
+        // console.log("total-valor" + valor - total)
     }
+    // return 0
 }
 
 function resultado(cont100, cont50, cont20, cont10, cont5, cont2, cont1, saque) {
@@ -99,4 +107,4 @@ function resultado(cont100, cont50, cont20, cont10, cont5, cont2, cont1, saque) 
     return resulfinal
 }
 
-calcCedulas(87)
+console.log(calcCedulas(86))
