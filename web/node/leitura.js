@@ -12,4 +12,4 @@ fs.readFile(caminho, 'utf8', (erro, conteudo) => {
     console.log(`${config.db.host}:${config.db.port}`)
 })
 
-console.log(jsonArquivo)
+console.log(jsonArquivo.db.host)
