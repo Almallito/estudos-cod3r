@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+<h1>Projeto</h1>
+<ul class="tree">
+    <li>
+        <span class="buttonFolder">backend</span>
+        <ul>
+            <li>
+                <span class="buttonFolder">app</span>
+                <ul>
+                    <li>produto.js</li>
+                    <li>usuario.js</li>
+                    <li>venda.js</li>
+                </ul>
+            </li>
+            <li>
+                <span class="buttonFolder">config</span>
+                <ul>
+                    <li>banco.js</li>
+                    <li>rotas.js</li>
+                    <li>servidor.js</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <span class="buttonFolder">frontend</span>
+        <ul>
+            <li>
+                <span class="buttonFolder">public</span>
+                <ul>
+                    <li>app.css</li>
+                    <li>app.js</li>
+                    <li>index.html</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<script>
+    const buttons = document.querySelectorAll('.buttonFolder')
+    buttons.forEach(button =>{
+        button.onclick = (e) => {
+            // console.log(e.target.nextElementSibling)
+            const ul = button.nextElementSibling
+            const dp = ul.style.display
+            ul.style.display = dp === 'none' ? 'block' : 'none'
+        }
+    })
+</script>
