@@ -7,7 +7,90 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        /* ... */
+        html {
+            font-family: Oswald;
+            font-size: 1.3em;
+        }
+        body{
+            margin: 0;
+            background-color: #ccc
+        }
+        .cabecalho{
+            position: fixed;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-color: #333; 
+            padding: 5px;
+            border-bottom: 4px solid #4faddb;
+            min-height: 80px;
+        }
+        .logo{
+            display: inline-block;
+        }
+        .logo img{
+            width: 264px;
+        }
+        .menu-toggle{
+            display:none;
+            position: absolute;
+            right: 30px;
+            color: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            background-color: #414141;
+            cursor: pointer;
+        }
+        .autenticacao{
+            display:none;
+        }
+        .autenticacao a {
+            text-decoration: none;
+            color: #fff;
+
+        }
+        .botao{
+            background-color: #f50a31;
+            padding: 10px 20px;
+            margin: 0 0 0 10px;
+            border-radius: 45px
+        }
+        nav{
+            display: inline-block;
+        }
+        .menu ul li{
+            display: inline-block;
+            text-decoration: none;
+        } 
+        .menu ul li a{
+            text-decoration: none;
+            color: #fff;
+            
+            padding: 15px 20px;
+        }
+        .menu ul li a:hover, .menu ul li a.selected{
+            background-color: #4faddb;
+            color: #000;            
+        }
+
+        @media (min-width: 887px){
+            .autenticacao{
+                position: absolute; 
+                display: block;
+                right: 50px;
+            }
+            
+        }
+        @media (max-width: 700px){
+            nav{
+                display: none;
+            }
+            .menu-toggle{
+                display:block;
+            }
+        }
     </style>
 </head>
 
@@ -44,8 +127,15 @@
     </header>
 
     <script>
-        // ...
+         window.onhashchange = (e)=>{
+            const oldURL = e.oldURL.split('#')[1]
+            const newURL = e.newURL.split('#')[1]
+            const oldMenu = document.querySelector(`.menu a[href="#${oldURL}"]`)
+            const newMenu = document.querySelector(`.menu a[href="#${newURL}"]`)
+            oldMenu && oldMenu.classList.remove('selected')
+            newMenu && newMenu.classList.add('selected')
+        }
     </script>
 </body>
-
+ 
 </html>
