@@ -9,9 +9,26 @@
 
 <body class="conteudo exercicio">
     <div>
-        <a href="https://google.com.br">Google</a>
+        <a esperar href="https://google.com.br">Google</a>
     </div>
     <script>
-        // ...
+        function navegarEm5s(e){
+            e.preventDefault()
+            const div = document.querySelector('div')
+            const timer = document.createElement('p')
+            let tempo = 5
+            
+            setInterval(()=> {
+                timer.innerHTML = `Redirecionando em ${tempo--}`
+                div.parentNode.appendChild(timer)
+            },800)
+            setTimeout(()=>{
+                window.location.href = e.target.href
+            },tempo * 1000)
+        }
+        const link = document.querySelector('[esperar]')
+        // console.log(window.location.href)
+        // console.log(link)
+        link.addEventListener('click', navegarEm5s)
     </script>
 </body>
