@@ -20,6 +20,35 @@
     <input type="text" placeholder="Cor de Background">
 
     <script>
-        // ...
+        function mostrarPosi(e){
+            const div = document.querySelector('#posicao')
+            div.innerHTML = `x: ${e.clientX}, y:${e.clientY}`
+            addRastro(e.clientX, e.clientY, e.target)
+        }
+        function addRastro(posiX,posiY, obj){
+            const bola = document.createElement('div')
+            bola.style.position = 'absolute'
+            bola.style.height = '50px'
+            bola.style.width = '10px'
+            bola.style.borderRadius = '50px'
+            bola.style.backgroundColor = '#F00'
+            
+            bola.style.top = `${posiY}px`
+            bola.style.left =  `${posiX}px`
+
+            //console.log(obj)
+            obj.appendChild(bola)
+            removeAnterior(obj, bola)
+        }
+        function removeAnterior(pai,obj){
+            pai.removeChild(obj.previousSibling)
+        }
+        const body = document.querySelector('body')
+        body.addEventListener('mousemove', mostrarPosi)
+
+        const div = document.querySelector('#posicao')
+        div.addEventListener('mouseover',  () =>{
+            body.removeEventListener('mousemove',mostrarPosi)
+        })
     </script>
 </body>
